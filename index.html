@@ -1,18 +1,64 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
-      window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
-    </script>
-	</head>
-	<body>
-		<div class="container" id="main">
-			Build Me!
+<head>
+	<title>Gee-Mail: The LAST E-Mail Client You will Ever Need!</title>
+	<link rel="stylesheet" media="screen" href="css/style.css">
+	<script src="js/mail-generator.js"></script>
+	<script >
+		window.onload = function () {
+			var info = window.geemails;
+
+			for(var i = 0; i<info.length; i++){
+				var sender = info[i].sender;
+				var subject = info[i].subject;
+				var date = info[i].date;
+				var body = info[i].body;
+				console.log(info[i].sender);
+				console.log(info[i].subject);
+				console.log(info[i].date);
+				console.log(info[i].body);
+				var firstSender = document.getElementById('sender');
+				firstSender.innerHTML = sender;
+				var firstSubject = document.getElementById('subject');
+				firstSubject.innerHTML = subject;
+				var firstDate = document.getElementById('date');
+				firstDate.innerHTML = date;
+				var firstBody = document.getElementById('content');
+				firstBody.innerHTML = body;
+				var numMessages = document.getElementById('count');
+				numMessages.innerHTML = '<h6>You have: ' + i + ' messages.</h6>';
+
+			//document.write(subject + '<br/>');
+			//document.write(subject + '<br/>');
+			//document.write(date + '<br/>');
+			//document.write(body + '<br/>');
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id = "container">
+		<div id= "header">
+			<header>
+				<h1>Gee-Mail<img src="images/mail.png"></h1>
+			</header>
 		</div>
-	</body>
+		<div id= "folders">
+			<ul style="list-style: none;" padding: 0px>
+				<li><h2 id= "count">Get Mail!</h2></li>
+				<li><h3>Inbox</h3></li>
+				<li><h3>Sent</h3></li>
+				<li><h3>Drafts</h3></li>
+				<li><h3>Trash</h3></li>
+			</ul>
+		</div>
+		<div id = "sender"></div>
+		<div id = "subject"></div>
+		<div id = "date"></div>
+		<div id= "content"></div>
+		<div id= "footer">
+			Copyright &copy; 2018 Scott Joseph-Smith
+		</div>
+	</div>
+</body>
 </html>
