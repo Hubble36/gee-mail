@@ -25,15 +25,15 @@
         	//Creates 10 messages from the inputs loaged in mail-generator.js.
 			function printList (info) {
 				for(var i = 0; i < info.length; i += 1) {
-					sender = info[i].sender;
-					subject = info[i].subject;
-					date = info[i].date;
-					body = info[i].body;
-					console.log(info[i].sender);
-					console.log(info[i].subject);
-					console.log(info[i].date);
-					console.log(info[i].body);
-					from = document.createElement("div");
+				sender = info[i].sender;
+				subject = info[i].subject;
+				date = info[i].date;
+				body = info[i].body;
+				//console.log(info[i].sender);
+				//console.log(info[i].subject);
+				//console.log(info[i].date);
+				//console.log(info[i].body);
+				from = document.createElement("div");
           			from.innerHTML = "FROM: " + info[i].sender + '<br>';
           			select.appendChild(from);
          	 		from.className = "from";
