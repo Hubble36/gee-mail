@@ -6,33 +6,84 @@
 	<script src="js/mail-generator.js"></script>
 	<script >
 		window.onload = function () {
+			//Variables list. Changes windows.geemail to a shorter stiring. 
+			//sets up variables for each message component.
 			var info = window.geemails;
+			var sender;
+			var subject;
+			var date;
+			var body;
+			var messageInterval = setInterval (function messageRelease(){
+            msgInt() }, 8000);
 
-			for(var i = 0; i<info.length; i++){
-				var sender = info[i].sender;
-				var subject = info[i].subject;
-				var date = info[i].date;
-				var body = info[i].body;
-				console.log(info[i].sender);
-				console.log(info[i].subject);
-				console.log(info[i].date);
-				console.log(info[i].body);
-				var firstSender = document.getElementById('sender');
-				firstSender.innerHTML = sender;
-				var firstSubject = document.getElementById('subject');
-				firstSubject.innerHTML = subject;
-				var firstDate = document.getElementById('date');
-				firstDate.innerHTML = date;
-				var firstBody = document.getElementById('content');
-				firstBody.innerHTML = body;
-				var numMessages = document.getElementById('count');
-				numMessages.innerHTML = '<h6>You have: ' + i + ' messages.</h6>';
+			//Creates the counter for the messages.
+			var count = document.createElement("div");
+        	count.innerHTML = "YOU HAVE " + info.length + " MESSAGES";
+        	mailCount.appendChild(count);
+        	count.className = "count"
 
-			//document.write(subject + '<br/>');
-			//document.write(subject + '<br/>');
-			//document.write(date + '<br/>');
-			//document.write(body + '<br/>');
+        	//Creates 10 messages from the inputs loaged in mail-generator.js.
+			function printList (info) {
+				for(var i = 0; i < info.length; i += 1) {
+					sender = info[i].sender;
+					subject = info[i].subject;
+					date = info[i].date;
+					body = info[i].body;
+					console.log(info[i].sender);
+					console.log(info[i].subject);
+					console.log(info[i].date);
+					console.log(info[i].body);
+					from = document.createElement("div");
+          			from.innerHTML = "FROM: " + info[i].sender + '<br>';
+          			select.appendChild(from);
+         	 		from.className = "from";
+         	 		title = document.createElement("div");
+          			title.innerHTML = "SUBJECT: " + info[i].subject + '<br>' + '<br>';
+          			select.appendChild(title);
+         	 		title.className = "title";
+         	 		date = document.createElement("div");
+          			date.innerHTML = info[i].date + '<br>';
+          			content.appendChild(date);
+         	 		date.className = "date";
+         	 		body = document.createElement("div");
+          			body.innerHTML = info[i].body + '<br>' + '<br>';
+          			content.appendChild(body);
+         	 		body.className = "body";
+				}
 			}
+			printList(info);
+			//Updates message count as new messages are created.
+			function updateCount(){
+            	info.push(getNewMessage());
+            	var addCount = count;
+            	addCount.innerHTML = "YOU HAVE " + info.length + " MESSAGES";
+            	mailCount.appendChild(count);
+            	count.className = "count";
+          }
+
+          //Creates new randomly generated messages. 
+          function msgInt(){
+            var inner = document.createElement("div");
+            select.appendChild(inner);
+            inner.className = "inner";
+            var addFrom = document.createElement("div");
+            addFrom.innerHTML = "FROM: " + info[info.length - 1].sender + '<br>';
+            select.appendChild(addFrom);
+            addFrom.className = "from";
+            var addTitle = document.createElement("div");
+            addTitle.innerHTML = "SUBJECT: " + info[info.length - 1].subject + '<br>' + '<br>';
+            select.appendChild(addTitle);
+            addTitle.className = "title";
+            var addDate = document.createElement("div");
+           	addDate.innerHTML = info[info.length - 1].date + '<br>';
+           	content.appendChild(addDate);
+           	addDate.className = "date";
+            var addMessage = document.createElement("div");
+            addMessage.innerHTML = info[info.length - 1].body + '<br>' + '<br>';
+            content.appendChild(addMessage);
+            addMessage.className = "message";
+            updateCount();
+          }
 		};
 	</script>
 </head>
@@ -45,16 +96,17 @@
 		</div>
 		<div id= "folders">
 			<ul style="list-style: none;" padding: 0px>
-				<li><h2 id= "count">Get Mail!</h2></li>
-				<li><h3>Inbox</h3></li>
-				<li><h3>Sent</h3></li>
-				<li><h3>Drafts</h3></li>
-				<li><h3>Trash</h3></li>
+				<li><h6 id="mailCount"></h6></li>
+				<li><a href="#"><h3>Inbox</h3></a></li>
+				<li><a href="#"><h3>Sent</h3></a></li>
+				<li><a href="#"><h3>Drafts</h3></a></li>
+				<li><a href="#"><h3>Trash</h3></a></li>
 			</ul>
 		</div>
-		<div id = "sender"></div>
-		<div id = "subject"></div>
-		<div id = "date"></div>
+		<div id = "messages">
+			<h4>Messages</h4>
+			<a href="" id= "select"></a>
+		</div>
 		<div id= "content"></div>
 		<div id= "footer">
 			Copyright &copy; 2018 Scott Joseph-Smith
