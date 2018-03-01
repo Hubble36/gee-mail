@@ -1,3 +1,9 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 5px;
+	background-color: #EEEEEE;
+}
+
 #header {
 	background-color: white;
 	padding: 5px;
@@ -12,7 +18,7 @@
 #folders {
 	background-color: white;
 	margin-top: 5px;
-	width: 10%;
+	width: 8%;
 	text-align: center;
 	float: left;
 }
@@ -22,33 +28,15 @@
 	margin: 0;
 }
 
-#folders h2 {
+#folders h6 {
 	text-decoration: underline;
 }
 
-#sender {
+#messages {
 	background-color: white;
 	margin-top: 5px;
 	margin-left: 5px;
-	width: 5%;
-	text-align: left;
-	float: left;
-}
-
-#subject {
-	background-color: white;
-	margin-top: 5px;
-	margin-left: 5px;
-	width: 5%;
-	text-align: left;
-	float: left;
-}
-
-#date {
-	background-color: white;
-	margin-top: 5px;
-	margin-left: 5px;
-	width: 15%;
+	width: 21.2%;
 	text-align: left;
 	float: left;
 }
@@ -57,7 +45,7 @@
 	background-color: white;
 	margin-top: 5px;
 	margin-left: 5px;
-	width: 63%;
+	width: 70%;
 	text-align: left;
 	float: right;
 }
@@ -66,7 +54,13 @@
 	clear: both;
 	text-align: right;
 	font-size: 10pt;
-	position:absolute;
+	position:bottom-right;
    	bottom:0;
    	width:98%;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+	font-size: 12pt;
 }
