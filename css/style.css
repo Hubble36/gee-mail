@@ -36,18 +36,9 @@ body {
 	background-color: white;
 	margin-top: 5px;
 	margin-left: 5px;
-	width: 21.2%;
+	width: 91.2%;
 	text-align: left;
 	float: left;
-}
-
-#content {
-	background-color: white;
-	margin-top: 5px;
-	margin-left: 5px;
-	width: 70%;
-	text-align: left;
-	float: right;
 }
 
 #footer {
