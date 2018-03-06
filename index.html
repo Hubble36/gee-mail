@@ -13,6 +13,7 @@
 			var subject;
 			var date;
 			var body;
+			var showing;
 			var messageInterval = setInterval (function messageRelease(){
             msgInt() }, 8000);
 
@@ -48,27 +49,26 @@
          	 		body = document.createElement("div");
           			body.innerHTML = info[i].body + '<br>' + '<br>';
           			body.style.display = "none";
-          			select.appendChild(body);
+          			date.appendChild(body);
          	 		body.className = "body";
 				}
 			}
-				
+			printList(info);
+
 			var displayMsg = document.getElementsByClassName ("date");
 			for ( var i = 0; i < displayMsg.length; i ++) {
 					displayMsg[i].addEventListener('click', showMsg)
 			}
 
 			function showMsg () {
-				var showing = this.querySelectorAll(".body")[0];
-				if(showing.style.display === 'none') {
+				showing = this.querySelectorAll(".body")[0];
+				if (showing.style.display === 'none') {
 					showing.style.display = 'block';
 				} else {
 					showing.style.display = 'none';
 				}
 			}
 
-			printList(info);
-			
 			//Updates message count as new messages are created.
 			function updateCount(){
             	info.push(getNewMessage());
@@ -96,8 +96,9 @@
            	addDate.className = "date";
             var addMessage = document.createElement("div");
             addMessage.innerHTML = info[info.length - 1].body + '<br>' + '<br>';
-            select.appendChild(addMessage);
-            addMessage.className = "message";
+            addMessage.style.display = "none"
+            addDate.appendChild(addMessage);
+            addMessage.className = "body";
             updateCount();
           }
 		};
