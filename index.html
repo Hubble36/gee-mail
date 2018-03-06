@@ -42,34 +42,33 @@
           			select.appendChild(title);
          	 		title.className = "title";
          	 		date = document.createElement("div");
-         	 		date.className = "selector";
           			date.innerHTML = info[i].date + '<br>' + '<br>';
           			select.appendChild(date);
          	 		date.className = "date";
          	 		body = document.createElement("div");
-         	 		body.className = "selectee";
           			body.innerHTML = info[i].body + '<br>' + '<br>';
           			body.style.display = "none";
           			select.appendChild(body);
          	 		body.className = "body";
 				}
-
-				var displayMsg = document.getElementsByClassName ("selector");
-
-				for ( var i = 0; i < displayMsg.length; i ++) {
+			}
+				
+			var displayMsg = document.getElementsByClassName ("date");
+			for ( var i = 0; i < displayMsg.length; i ++) {
 					displayMsg[i].addEventListener('click', showMsg)
-				}
 			}
 
 			function showMsg () {
-				var showing = this.querySelectorAll(".selectee");
-				if(body[0].style.display === 'none') {
-					body[0].style.display = 'block';
+				var showing = this.querySelectorAll(".body")[0];
+				if(showing.style.display === 'none') {
+					showing.style.display = 'block';
 				} else {
-					body[0].style.display = 'none';
+					showing.style.display = 'none';
 				}
 			}
+
 			printList(info);
+			
 			//Updates message count as new messages are created.
 			function updateCount(){
             	info.push(getNewMessage());
