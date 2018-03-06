@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Gee-Mail: The LAST E-Mail Client You will Ever Need!</title>
-	<link rel="stylesheet" media="screen" href="css/style.css">
+	<link rel="stylesheet" media="screen" href="css/style1.css">
 	<script src="js/mail-generator.js"></script>
 	<script >
 		window.onload = function () {
@@ -22,29 +22,6 @@
         	mailCount.appendChild(count);
         	count.className = "count"
 
-
-
-        	//My attempt to get the message to load on clicks. I added the 
-        	// body.className = "selected" to the divs I created. But when clicking
-        	//I only got page reloads.
-
-
-
-
-        	/*var displayMsg = document.getElementsByClassName ("selector");
-
-				for ( var i = 0; i < displayMsg; i +=1)
-					displayMsg[i].addEventListener('click', showMsg)
-			}
-
-			function showMsg () {
-				var showing = this.querySelectorAll('.selectee') [0];
-				if(body.style.display === 'none') {
-					body.style.display = 'inline';
-				} else {
-					body.style.display = 'none';
-				}
-			*/
         	//Creates 10 messages from the inputs loaged in mail-generator.js.
 			function printList (info) {
 				for(var i = 0; i < info.length; i += 1) {
@@ -57,21 +34,39 @@
 					//console.log(info[i].date);
 					//console.log(info[i].body);
 					from = document.createElement("div");
-          			from.innerHTML = "FROM: " + info[i].sender + '<br>';
+					from.innerHTML = "FROM: " + info[i].sender + '<br>';
           			select.appendChild(from);
          	 		from.className = "from";
          	 		title = document.createElement("div");
-          			title.innerHTML = "SUBJECT: " + info[i].subject + '<br>' + '<br>';
+          			title.innerHTML = "SUBJECT: " + info[i].subject + '<br>';
           			select.appendChild(title);
          	 		title.className = "title";
          	 		date = document.createElement("div");
-          			date.innerHTML = info[i].date + '<br>';
+         	 		date.className = "selector";
+          			date.innerHTML = info[i].date + '<br>' + '<br>';
           			select.appendChild(date);
          	 		date.className = "date";
          	 		body = document.createElement("div");
+         	 		body.className = "selectee";
           			body.innerHTML = info[i].body + '<br>' + '<br>';
+          			body.style.display = "none";
           			select.appendChild(body);
          	 		body.className = "body";
+				}
+
+				var displayMsg = document.getElementsByClassName ("selector");
+
+				for ( var i = 0; i < displayMsg.length; i ++) {
+					displayMsg[i].addEventListener('click', showMsg)
+				}
+			}
+
+			function showMsg () {
+				var showing = this.querySelectorAll(".selectee");
+				if(body[0].style.display === 'none') {
+					body[0].style.display = 'block';
+				} else {
+					body[0].style.display = 'none';
 				}
 			}
 			printList(info);
@@ -83,7 +78,6 @@
             	mailCount.appendChild(count);
             	count.className = "count";
           }
-
           //Creates new randomly generated messages. 
           function msgInt(){
             var inner = document.createElement("div");
@@ -94,11 +88,11 @@
             select.appendChild(addFrom);
             addFrom.className = "from";
             var addTitle = document.createElement("div");
-            addTitle.innerHTML = "SUBJECT: " + info[info.length - 1].subject + '<br>' + '<br>';
+            addTitle.innerHTML = "SUBJECT: " + info[info.length - 1].subject + '<br>';
             select.appendChild(addTitle);
             addTitle.className = "title";
             var addDate = document.createElement("div");
-           	addDate.innerHTML = info[info.length - 1].date + '<br>';
+           	addDate.innerHTML = info[info.length - 1].date + '<br>' + '<br>';
            	select.appendChild(addDate);
            	addDate.className = "date";
             var addMessage = document.createElement("div");
@@ -128,8 +122,9 @@
 		</div>
 		<div id = "messages">
 			<h4>Messages</h4>
-			<a href="" id= "select"></a>
+			<div id= "select"></div>
 		</div>
+		<div id= "content"></div>
 		<div id= "footer">
 			Copyright &copy; 2018 Scott Joseph-Smith
 		</div>
